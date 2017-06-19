@@ -7,7 +7,7 @@ function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
-    // TODO: search by name
+    searchByName(people);
     break;
     case 'no':
     // TODO: search by traits
@@ -31,12 +31,10 @@ function mainMenu(person, people){
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
   switch(displayOption){
-    case "info": diplay
-
-    // TODO: get person's info
+    case "info":
+    displayInfo(person);
     break;
     case "family":
-    // TODO: get person's family
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -70,21 +68,31 @@ function displayPeople(people){
   }).join("\n"));
 }
 
-function displayPerson(person){
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
-  var personInfo = "First Name: " + person.firstName + "\n";
-  personInfo += "Last Name: " + person.lastName + "\n";
-  personInfo += "ID: "+ person.id + "\n";
-  personInfo += "Gender: " +  person.gender + "\n";
+// function displayPerson(person){
+//   // print all of the information about a person:
+//   // height, weight, age, name, occupation, eye color.
+//   var personInfo = "First Name: " + person.firstName + "\n";
+//   personInfo += "Last Name: " + person.lastName + "\n";
+//   personInfo += "ID: "+ person.id + "\n";
+//   personInfo += "Gender: " +  person.gender + "\n";
+//   personInfo += "DOB: " + person.dob + "\n";
+//   personInfo += "Height: " +person.height + "\n";
+//   personInfo += "Weight: " +person.weight + "\n";
+//   personInfo += "Eye Color: " +person.eyeColor + "\n";
+//   personInfo += "Occupation: " +person.occupation + "\n";
+//   personInfo += "Parents: " +person.parents + "\n";
+//   personInfo += "Current Spouse: " +person.currentSpouse + "\n"
+//   // TODO: finish getting the rest of the information to display
+//   alert(personInfo);
+// }
+
+function displayInfo(person){
+  var personInfo = "Gender: " + person.gender + "\n";
   personInfo += "DOB: " + person.dob + "\n";
   personInfo += "Height: " +person.height + "\n";
   personInfo += "Weight: " +person.weight + "\n";
   personInfo += "Eye Color: " +person.eyeColor + "\n";
   personInfo += "Occupation: " +person.occupation + "\n";
-  personInfo += "Parents: " +person.parents + "\n";
-  personInfo += "Current Spouse: " +person.currentSpouse + "\n"
-  // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
 
