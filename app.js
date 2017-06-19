@@ -32,9 +32,10 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    displayInfo(person);
+    displayInfo(person,people);
     break;
     case "family":
+    displayFamily(person,people);
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -86,7 +87,7 @@ function displayPeople(people){
 //   alert(personInfo);
 // }
 
-function displayInfo(person){
+function displayInfo(person,people){
   var personInfo = "Gender: " + person.gender + "\n";
   personInfo += "DOB: " + person.dob + "\n";
   personInfo += "Height: " +person.height + "\n";
@@ -94,9 +95,10 @@ function displayInfo(person){
   personInfo += "Eye Color: " +person.eyeColor + "\n";
   personInfo += "Occupation: " +person.occupation + "\n";
   alert(personInfo);
+  return mainMenu(person,people);
 }
 
-function displayFamily(person){
+function displayFamily(person,people){
   // TODO: Display parents and current spouse.
 }
 
