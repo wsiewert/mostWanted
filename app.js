@@ -23,7 +23,9 @@ function app(people){
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
+  // Here we pass in the entire person object that we found in our search,
+  // as well as the entire original dataset of people. We need people in order
+  // to find descendants and other information that the user may want.
 
   if(!person){
     alert("Could not find that individual.");
@@ -53,11 +55,15 @@ function mainMenu(person, people){
 }
 
 function searchByName(people){
-  var firstName = promptFor("What is the person's first name?", chars);
-  var lastName = promptFor("What is the person's last name?", chars);
+  let firstName = promptFor("What is the person's first name?", chars);
+  let lastName = promptFor("What is the person's last name?", chars);
 
-  // TODO: find the person using the name they entered
-
+  for (var i = 0; i < people.length; i++) {
+    if (people[i].firstName.toLowerCase() === firstName && people[i].lastName.toLowerCase() === lastName){
+      let person = people[i];
+      return mainMenu(person, people);
+    }
+  }
 }
 
 // alerts a list of people
