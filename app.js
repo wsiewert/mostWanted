@@ -8,6 +8,7 @@ function app(people){
   switch(searchType){
     case 'yes':
     // TODO: search by name
+    searchByName(people);
     break;
     case 'no':
     // TODO: search by traits
@@ -31,12 +32,12 @@ function mainMenu(person, people){
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
   switch(displayOption){
-    case "info": diplay
-
+    case "info":
     // TODO: get person's info
     break;
     case "family":
     // TODO: get person's family
+    displayFamily(person);
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -86,6 +87,10 @@ function displayPerson(person){
   personInfo += "Current Spouse: " +person.currentSpouse + "\n"
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
+}
+
+function displayFamily(person){
+  // TODO: Display parents and current spouse.
 }
 
 // function that prompts and validates user input
