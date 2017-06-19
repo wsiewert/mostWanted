@@ -8,7 +8,6 @@ function app(people){
   switch(searchType){
     case 'yes':
     // TODO: search by name
-    searchByName(people);
     break;
     case 'no':
     // TODO: search by traits
@@ -19,13 +18,10 @@ function app(people){
   }
 }
 
-
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 
-  // Here we pass in the entire person object that we found in our search,
-  // as well as the entire original dataset of people. We need people in order
-  // to find descendants and other information that the user may want.
+  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
   if(!person){
     alert("Could not find that individual.");
@@ -35,7 +31,8 @@ function mainMenu(person, people){
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
   switch(displayOption){
-    case "info":
+    case "info": diplay
+
     // TODO: get person's info
     break;
     case "family":
@@ -55,15 +52,11 @@ function mainMenu(person, people){
 }
 
 function searchByName(people){
-  let firstName = promptFor("What is the person's first name?", chars);
-  let lastName = promptFor("What is the person's last name?", chars);
+  var firstName = promptFor("What is the person's first name?", chars);
+  var lastName = promptFor("What is the person's last name?", chars);
 
-  for (var i = 0; i < people.length; i++) {
-    if (people[i].firstName.toLowerCase() === firstName && people[i].lastName.toLowerCase() === lastName){
-      let person = people[i];
-      return mainMenu(person, people);
-    }
-  }
+  // TODO: find the person using the name they entered
+
 }
 
 // alerts a list of people
