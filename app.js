@@ -101,6 +101,16 @@ function displayFamily(person,people){
   // TODO: Display parents and current spouse.
 }
 
+function displayDescendants(person,people){
+  // TODO: checkDescendants(); capture all descendants in an array of objects
+  // TODO: displayPeople(); pass in descendants to display in alert
+  return mainMenu(person,people);
+}
+
+function checkDescendants(person,people){
+  // TODO: use recursion to loop through data to find descendants
+}
+
 // function that prompts and validates user input
 function promptFor(question, valid){
   do{
