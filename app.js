@@ -38,6 +38,7 @@ function mainMenu(person, people){
     displayFamily(person,people);
     break;
     case "descendants":
+    displayDescendants(person,people);
     // TODO: get person's descendants, check des., make array, display ppl, return menu
     break;
     case "restart":
@@ -103,6 +104,11 @@ function displayFamily(person,people){
 
 function displayDescendants(person,people){
   // TODO: checkDescendants(); capture all descendants in an array of objects
+  for (var i=0; [i]<people.length;i++) {
+    if (people[i].id.includes===people.id){
+      people[i].push;}
+      return displayDescendants();
+    }
   // TODO: displayPeople(); pass in descendants to display in alert
   return mainMenu(person,people);
 }
