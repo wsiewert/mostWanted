@@ -108,7 +108,7 @@ function displayDescendants(person,people){
   return mainMenu(person,people);
 }
 
-function checkDescendants(){
+function checkDescendants(person,people){
   // TODO: use recursion to loop through data to find descendants
 }
 
