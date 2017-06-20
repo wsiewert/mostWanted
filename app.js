@@ -38,7 +38,7 @@ function mainMenu(person, people){
     displayFamily(person,people);
     break;
     case "descendants":
-    displayDescendants(person,people);
+    // TODO: get person's descendants, check des., make array, display ppl, return menu
     break;
     case "restart":
     app(people); // restart
@@ -68,7 +68,6 @@ function displayPeople(people){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
-
 // function displayPerson(person){
 //   // print all of the information about a person:
 //   // height, weight, age, name, occupation, eye color.
@@ -100,16 +99,6 @@ function displayInfo(person,people){
 
 function displayFamily(person,people){
   // TODO: Display parents and current spouse.
-}
-
-function displayDescendants(person,people){
-  // TODO: checkDescendants(); capture all descendants in an array of objects
-  // TODO: displayPeople(); pass in descendants to display in alert
-  return mainMenu(person,people);
-}
-
-function checkDescendants(){
-  // TODO: use recursion to loop through data to find descendants
 }
 
 // function that prompts and validates user input
