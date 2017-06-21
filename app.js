@@ -103,18 +103,23 @@ function displayFamily(person,people){
 }
 
 function displayDescendants(person,people){
-  // TODO: checkDescendants(); capture all descendants in an array of objects
-  for (var i=0; [i]<people.length;i++) {
-    if (people[i].id.includes===people.id){
-      people[i].push;}
-      return displayDescendants();
-    }
-  // TODO: displayPeople(); pass in descendants to display in alert
+  if (checkDescendants(person,people).length === 0) {
+    alert("No descendants.");
+  } else {
+    displayPeople(checkDescendants(person,people));
+  }
   return mainMenu(person,people);
 }
 
 function checkDescendants(person,people){
-  // TODO: use recursion to loop through data to find descendants
+  let descendants = [];
+  for (var i = 0; i < people.length; i++) {
+    if (people[i].parents.includes(person.id)) {
+    descendants.push(people[i]);
+    checkDescendants(people[i]);
+    }
+    return descendants;
+  }
 }
 
 // function that prompts and validates user input
