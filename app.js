@@ -112,11 +112,14 @@ function displayDescendants(person,people){
   }
   return mainMenu(person,people);
 }
-
+//
 function getSpouse(person,people){
   // TODO: Return spouse object.
-  let spouse = people.filter(function(person));
-  return (person.currentSpouse);
+  for (var i=0; i <people.length; i++) {
+  if (people[i].currentSpouse.includes(person.id)){
+    return person[i];
+  }
+}
 }
 
 function getParents(person,people){
@@ -133,8 +136,13 @@ function getChildren(person,people){
   return children;
 }
 
-function getPersonById(person,people){
-  // TODO: Return person object with given ID.
+function getPersonById(Id,people){
+  let person = people.filter(function(object){
+    if (object.id === Id){
+      return true;
+    }
+  });
+  return person[0];
 }
 
 //Finds all descendants, returns and array of descendants.
