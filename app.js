@@ -119,7 +119,12 @@ function getSpouse(person,people){
 }
 
 function getParents(person,people){
-  // TODO: Return an array of parent-person objects.
+  let personsParents = person.parents.length;
+  let parentsArray = [];
+  for (var i = 0; i < personsParents; i++) {
+    parentsArray.push(getPersonById(person.parents[i],people));
+  }
+  return parentsArray;
 }
 
 function getChildren(person,people){
@@ -133,8 +138,8 @@ function getChildren(person,people){
 }
 
 function getPersonById(Id,people){
-  let person = people.filter(function(object){
-    if (object.id === Id){
+  let person = people.filter(function(personObject){
+    if (personObject.id === Id){
       return true;
     }
   });
