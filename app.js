@@ -38,8 +38,7 @@ function mainMenu(person, people){
     displayFamily(person,people);
     break;
     case "descendants":
-    displayDescendants(person,people);
-    // TODO: get person's descendants, check des., make array, display ppl, return menu
+    displayDescendants(person, people);
     break;
     case "restart":
     app(people); // restart
@@ -103,23 +102,37 @@ function displayFamily(person,people){
 }
 
 function displayDescendants(person,people){
-  if (checkDescendants(person,people).length === 0) {
+  let check = checkDescendants(person,people)
+  if (check.length === 0) {
     alert("No descendants.");
   } else {
-    displayPeople(checkDescendants(person,people));
+    displayPeople(check);
   }
   return mainMenu(person,people);
 }
 
+// function checkDescendants(person,people){
+//   let descendants = [];
+//   for (var i = 0; i < people.length; i++) {
+//     if (people[i].parents.includes(person.id)) {
+//       descendants.push(people[i]);
+//     }
+//   }
+//   return descendants;
+// }
+
 function checkDescendants(person,people){
-  let descendants = [];
+  let descendantsArray = [];
+  let personChange = person;
+
   for (var i = 0; i < people.length; i++) {
-    if (people[i].parents.includes(person.id)) {
-    descendants.push(people[i]);
-    checkDescendants(people[i]);
+    if(people[i].parents.includes(person.id)){
+      personChange = people[i];
+      descendantsArray.push(people[i]);
+      descendantsArray.push.apply(descendantsArray,checkDescendants(personChange,people));
     }
-    return descendants;
   }
+  return descendantsArray;
 }
 
 // function that prompts and validates user input
