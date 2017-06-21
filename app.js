@@ -98,7 +98,10 @@ function displayInfo(person,people){
 }
 
 function displayFamily(person,people){
-  // TODO: Display parents and current spouse.
+  // TODO: Display parents, spouse and children in an alert.
+  let parents;
+  let spouse;
+  let children;
 }
 
 function displayDescendants(person,people){
@@ -111,16 +114,25 @@ function displayDescendants(person,people){
   return mainMenu(person,people);
 }
 
-// function checkDescendants(person,people){
-//   let descendants = [];
-//   for (var i = 0; i < people.length; i++) {
-//     if (people[i].parents.includes(person.id)) {
-//       descendants.push(people[i]);
-//     }
-//   }
-//   return descendants;
-// }
+function getSpouse(person,people){
+  // TODO: Return spouse object.
+}
 
+function getParents(person,people){
+  // TODO: Return an array of parent-person objects.
+}
+
+function getChildren(person,people){
+  let children = [];
+  for (var i = 0; i < people.length; i++) {
+    if (people[i].parents.includes(person.id)) {
+      children.push(people[i]);
+    }
+  }
+  return children;
+}
+
+//Finds all descendants, returns and array of descendants.
 function checkDescendants(person,people){
   let descendantsArray = [];
   let personChange = person;
