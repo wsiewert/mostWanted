@@ -115,7 +115,7 @@ function displayDescendants(person,people){
 }
 
 function getSpouse(person,people){
-  // TODO: Return spouse object.
+  // TODO: Return spouse object or string none.
 }
 
 function getParents(person,people){
@@ -132,8 +132,13 @@ function getChildren(person,people){
   return children;
 }
 
-function getPersonById(person,people){
-  // TODO: Return person object with given ID.
+function getPersonById(Id,people){
+  let person = people.filter(function(object){
+    if (object.id === Id){
+      return true;
+    }
+  });
+  return person[0];
 }
 
 //Finds all descendants, returns and array of descendants.
