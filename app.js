@@ -99,17 +99,17 @@ function displayInfo(person,people){
 
 function displayFamily(person,people){
   // TODO: Display parents, spouse and children in an alert.
-  let parents;
-  let spouse;
-  let children;
+  let parents; //Parents returns array of parent objects.
+  let spouse; //Spouse returns 1 spouse object or string "none"
+  let children; //Children returns children array of objects.
 }
 
 function displayDescendants(person,people){
-  let check = checkDescendants(person,people)
-  if (check.length === 0) {
+  let descendants = checkDescendants(person,people)
+  if (descendants.length === 0) {
     alert("No descendants.");
   } else {
-    displayPeople(check);
+    displayPeople(descendants);
   }
   return mainMenu(person,people);
 }
@@ -130,6 +130,10 @@ function getChildren(person,people){
     }
   }
   return children;
+}
+
+function getPersonById(person,people){
+  // TODO: Return person object with given ID.
 }
 
 //Finds all descendants, returns and array of descendants.
