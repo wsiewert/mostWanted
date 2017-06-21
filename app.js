@@ -115,6 +115,8 @@ function displayDescendants(person,people){
 
 function getSpouse(person,people){
   // TODO: Return spouse object.
+  let spouse = people.filter(function(person));
+  return (person.currentSpouse);
 }
 
 function getParents(person,people){
