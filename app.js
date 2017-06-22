@@ -67,26 +67,10 @@ function displayPeople(people){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
-// function displayPerson(person){
-//   // print all of the information about a person:
-//   // height, weight, age, name, occupation, eye color.
-//   var personInfo = "First Name: " + person.firstName + "\n";
-//   personInfo += "Last Name: " + person.lastName + "\n";
-//   personInfo += "ID: "+ person.id + "\n";
-//   personInfo += "Gender: " +  person.gender + "\n";
-//   personInfo += "DOB: " + person.dob + "\n";
-//   personInfo += "Height: " +person.height + "\n";
-//   personInfo += "Weight: " +person.weight + "\n";
-//   personInfo += "Eye Color: " +person.eyeColor + "\n";
-//   personInfo += "Occupation: " +person.occupation + "\n";
-//   personInfo += "Parents: " +person.parents + "\n";
-//   personInfo += "Current Spouse: " +person.currentSpouse + "\n"
-//   // TODO: finish getting the rest of the information to display
-//   alert(personInfo);
-// }
 
 function displayInfo(person,people){
-  var personInfo = "Gender: " + person.gender + "\n";
+  var personInfo = person.firstName + " " + person.lastName + "'s information:" + "\n" + "\n"
+  personInfo += "Gender: " + person.gender + "\n";
   personInfo += "DOB: " + person.dob + "\n";
   personInfo += "Height: " +person.height + "\n";
   personInfo += "Weight: " +person.weight + "\n";
@@ -97,11 +81,10 @@ function displayInfo(person,people){
 }
 
 function displayFamily(person,people){
-  // TODO: Display parents, spouse and children in an alert.
   let parents = displayFamilyFormat(getParents(person,people));
-  let spouse = displayFamilyFormat(getParents(person,people));
+  let spouse = displayFamilyFormat(getSpouse(person,people));
   let children = displayFamilyFormat(getChildren(person,people));
-  let family = "Parents:" + "\n" + parents + "Spouse:" + "\n" + spouse + "Children:" + "\n" + children;
+  let family = person.firstName + " " + person.lastName + "'s Family" + "\n" + "\n" + "Parents:" + "\n" + parents + "\n" + "Spouse:" + "\n" + spouse + "\n" + "Children:" + "\n" + children;
   alert(family);
   return mainMenu(person,people);
 }
