@@ -99,9 +99,23 @@ function displayInfo(person,people){
 
 function displayFamily(person,people){
   // TODO: Display parents, spouse and children in an alert.
-  let parents; //Parents returns array of parent objects.
-  let spouse; //Spouse returns 1 spouse object or string "none"
-  let children; //Children returns children array of objects.
+  let parents = displayFamilyFormat(getParents(person,people));
+  let spouse = // TODO: add in get spouse function.
+  let children = displayFamilyFormat(getChildren(person,people));
+  let family = "Parents:" + "\n" + parents + "Spouse:" + "\n" + spouse + "Children:" + "\n" + children;
+  alert(family);
+  return mainMenu(person,people);
+}
+
+function displayFamilyFormat(peopleArray){
+  let arrayToString = peopleArray.map(function(personObject){
+      return "  " + personObject.firstName + " " + personObject.lastName + "\n";
+  }).join("");
+  if(arrayToString.length === 0){
+    return "  -None-" + "\n"
+  } else {
+    return arrayToString;
+  }
 }
 
 function displayDescendants(person,people){
