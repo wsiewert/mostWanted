@@ -99,7 +99,7 @@ function displayInfo(person,people){
 function displayFamily(person,people){
   // TODO: Display parents, spouse and children in an alert.
   let parents = displayFamilyFormat(getParents(person,people));
-  let spouse; // TODO: add in get spouse function.
+  let spouse = displayFamilyFormat(getParents(person,people));
   let children = displayFamilyFormat(getChildren(person,people));
   let family = "Parents:" + "\n" + parents + "Spouse:" + "\n" + spouse + "Children:" + "\n" + children;
   alert(family);
@@ -126,7 +126,7 @@ function displayDescendants(person,people){
   }
   return mainMenu(person,people);
 }
-//
+
 function getSpouse(spouse,people){
   let person = people.filter(function(object){
     if (object.currentSpouse === spouse.id){
