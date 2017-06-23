@@ -10,7 +10,7 @@ function app(people){
     searchByName(people);
     break;
     case 'no':
-    // TODO: search by traits
+    searchMenu(people);
     break;
     default:
     app(people); // restart app
@@ -47,6 +47,18 @@ function mainMenu(person, people){
     default:
     return; // stop execution
   }
+}
+
+function searchMenu(people){
+  // TODO: Fill out a search menu to lookup a person by traits
+}
+
+function promptCriteria(){
+  // TODO: Prompt user for the criteria they chose
+}
+
+function refineSearch(){
+  // TODO: Asks user to choose another criteria.
 }
 
 function searchByName(people){
