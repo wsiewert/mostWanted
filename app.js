@@ -119,10 +119,23 @@ function getPeopleByCriteria(criteria,people,userInput){
 return peopleArray;
 }
 
-function refineSearch(people,criteriaArray,searchResults){
+function refineSearch(people,criteriaArray, result){
   // TODO: Asks user to choose another criteria.
-var displayRefineSearch = prompt ("Here is the list of people who fit that criteria:" +searchResults +"\n"+ "Type the name to find further information." + "\n" +  "Or, type one of the following:"+  " " +criteriaArray+ " "+ "\n"+"to refine your search or 'restart' or 'quit'.");
-//retrun function searchmenu
+
+  let peopleByCriteria = DisplayPersonByCriteria(getPeopleByCriteria(people));
+  let promptCriteria = ("Here is the list of people who fit that criteria:" +peopleByCriteria+ "\n"+ "Type the name to find further information." + "\n" +  "Or, type one of the following:"+  " " +criteriaArray+ " "+ "\n"+"to refine your search or 'restart' or 'quit'.");
+prompt (promptCriteria);
+}
+
+function DisplayPersonByCriteria (criteriaArray){
+  let arrayToString = criteriaArray.map(function(personObject){
+    return " "+personObject.firstName+ " " +personObject.lastName+"\n";
+  }).join("");
+  if(arrayToString.length === 0){
+    return "No one fits this criteria" + "\n"
+  } else {
+    return arrayToString;
+  }
 }
 
 function searchByName(people){
@@ -134,7 +147,7 @@ function searchByName(people){
       return mainMenu(person, people);
     }
   }
-  alert ("no person found");
+  alert ("\n"+"no person found");
   return app(people);
 }
 
