@@ -38,7 +38,6 @@ function mainMenu(person, people){
     case "restart":
     app(people); // restart
     break;
-    case "quit":
     return; // stop execution
     default:
     return;
@@ -47,9 +46,32 @@ function mainMenu(person, people){
 
 function searchMenu(people){
   // TODO: Fill out a search menu to lookup a person by traits
+  var criteriaArrayIndex = ["age","height", "weight", "occupation", "eye color"];
+  var displaySearchMenu = prompt("Search for the person by the following traits: age, height (in.), weight (lbs), occupation, and eye color. Type the option you want or 'restart' or 'quit'.");
+  switch(displaySearchMenu){
+    case "age":
+    getCriteria(people, criteriaArrayIndex);
+    break;
+    case "height":
+    getCriteria(people, criteriaArrayIndex);
+    break;
+    case "weight":
+    getCriteria(people, criteriaArrayIndex);
+    break;
+    case "occupation":
+    getCriteria(people, criteriaArrayIndex);
+    break;
+    case "eye color":
+    getCriteria(people, criteriaArrayIndex);
+    break;
+    case "restart":
+    app(people); //restart
+    break;
+    default:
+    return;
+  }
 }
-
-function promptCriteria(){
+function getCriteria(){
   // TODO: Prompt user for the criteria they chose
 }
 
