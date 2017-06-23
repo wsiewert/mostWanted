@@ -1,7 +1,6 @@
 /*
 Build all of your functions for displaying and gathering information below (GUI).
 */
-
 // app is the function called to start the entire application
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
@@ -13,19 +12,16 @@ function app(people){
     searchMenu(people);
     break;
     default:
-    app(people); // restart app
+    app(people);
+    // restart app
     break;
   }
 }
 
+
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-
-  if(!person){
-    alert("Could not find that individual.");
-    return app(people); // restart
-  }
+/* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
@@ -42,15 +38,38 @@ function mainMenu(person, people){
     case "restart":
     app(people); // restart
     break;
-    case "quit":
     return; // stop execution
     default:
-    return; // stop execution
+    return;
   }
 }
 
 function searchMenu(people){
   // TODO: Fill out a search menu to lookup a person by traits
+  var criteriaArrayIndex = ["age","height", "weight", "occupation", "eye color"];
+  var displaySearchMenu = prompt("Search for the person by the following traits: age, height (in.), weight (lbs), occupation, and eye color. Type the option you want or 'restart' or 'quit'.");
+  switch(displaySearchMenu){
+    case "age":
+    getCriteria(people, criteriaArrayIndex);
+    break;
+    case "height":
+    getCriteria(people, criteriaArrayIndex);
+    break;
+    case "weight":
+    getCriteria(people, criteriaArrayIndex);
+    break;
+    case "occupation":
+    getCriteria(people, criteriaArrayIndex);
+    break;
+    case "eye color":
+    getCriteria(people, criteriaArrayIndex);
+    break;
+    case "restart":
+    app(people); //restart
+    break;
+    default:
+    return;
+  }
 }
 
 function getCriteria(people,criteriaArray,index){
@@ -111,13 +130,14 @@ function refineSearch(people,criteriaArray,searchResults){
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
   let lastName = promptFor("What is the person's last name?", chars);
-
   for (var i = 0; i < people.length; i++) {
     if (people[i].firstName.toLowerCase() === firstName && people[i].lastName.toLowerCase() === lastName){
       let person = people[i];
       return mainMenu(person, people);
     }
   }
+  alert ("no person found");
+  return app(people);
 }
 
 // alerts a list of people
