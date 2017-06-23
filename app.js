@@ -46,19 +46,19 @@ function searchMenu(people){
   var displaySearchMenu = prompt("Search for the person by the following traits: age, height (in.), weight (lbs), occupation, and eye color. Type the option you want or 'restart' or 'quit'.");
   switch(displaySearchMenu){
     case "age":
-    getCriteria(people, criteriaArray);
+    getCriteria(people, criteriaArray, 0);
     break;
     case "height":
-    getCriteria(people, criteriaArray);
+    getCriteria(people, criteriaArray, 1);
     break;
     case "weight":
-    getCriteria(people, criteriaArray);
+    getCriteria(people, criteriaArray, 2);
     break;
     case "occupation":
-    getCriteria(people, criteriaArray);
+    getCriteria(people, criteriaArray, 3);
     break;
     case "eye color":
-    getCriteria(people, criteriaArray);
+    getCriteria(people, criteriaArray, 4);
     break;
     case "restart":
     app(people); //restart
@@ -67,12 +67,59 @@ function searchMenu(people){
     return;
   }
 }
-function getCriteria(people, criteriaArray){
-  // TODO: Prompt user for the criteria they chose
 
+function getCriteria(people,criteriaArray,index){
+  let criteriaList = criteriaArray;
+  let userInput = prompt("Please provide: " + criteriaArray[index]);
+  if (userInput === ""){
+    return getCriteria(people,criteriaArray,index);
+  }
+  if (!userInput){
+    return;
+  }
+  if (criteriaArray[index] === "age" || criteriaArray[index] === "height" || criteriaArray[index] === "weight"){
+    if (isNaN(parseInt(userInput))){
+      alert("You must provide a number for this search!");
+      return getCriteria(people,criteriaArray,index);
+    } else {
+      userInput = parseInt(userInput);
+    }
+  }
+  let criteria = criteriaList.splice(index,1);
+  return refineSearch(people,criteriaList,getPeopleByCriteria(criteria,people,userInput));
 }
 
-function refineSearch(people, criteriaArray, searchResults){
+function getPeopleByCriteria(criteria,people,userInput){
+  let peopleArray = [];
+
+  if (criteria === "age"){
+    // TODO: Create a function to get the age then compare the values through the data set.
+  } else if(criteria === "height"){
+    peopleArray.push.apply(peopleArray,people.filter(function(personObject){
+      if(personObject.height === userInput){
+        return true;
+      }
+    }));
+  } else if(criteria === "weight"){
+    peopleArray.push.apply(peopleArray,people.filter(function(personObject){
+      if(personObject.weight === userInput){
+        return true;
+      }
+    }));
+  } else if(criteria === "occupation"){
+    peopleArray.push.apply(peopleArray,people.filter(function(personObject){
+      if(personObject.occupation === userInput){
+        return true;
+      }
+    }));
+  } else if(criteria === "eye color"){
+    // TODO: filter dataset for eye color.
+    return;
+  }
+return peopleArray;
+}
+
+function refineSearch(people,criteriaArray,searchResults){
   // TODO: Asks user to choose another criteria.
 var displayRefineSearch = prompt ("Here is the list of people who fit that criteria:" +searchResults +"\n"+ "Type the name to find further information." + "\n" +  "Or, type one of the following:"+  " " +criteriaArray+ " "+ "\n"+"to refine your search or 'restart' or 'quit'.");
 //retrun function searchmenu
@@ -90,6 +137,7 @@ function searchByName(people){
   alert ("no person found");
   return app(people);
 }
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
