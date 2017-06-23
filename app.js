@@ -9,7 +9,7 @@ function app(people){
     searchByName(people);
     break;
     case 'no':
-    // TODO: search by traits
+    searchMenu(people);
     break;
     default:
     app(people);
@@ -45,6 +45,17 @@ function mainMenu(person, people){
   }
 }
 
+function searchMenu(people){
+  // TODO: Fill out a search menu to lookup a person by traits
+}
+
+function promptCriteria(){
+  // TODO: Prompt user for the criteria they chose
+}
+
+function refineSearch(){
+  // TODO: Asks user to choose another criteria.
+}
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
@@ -66,7 +77,8 @@ function displayPeople(people){
 }
 
 function displayInfo(person,people){
-  var personInfo = "Gender: " + person.gender + "\n";
+  var personInfo = person.firstName + " " + person.lastName + "'s information:" + "\n" + "\n"
+  personInfo += "Gender: " + person.gender + "\n";
   personInfo += "DOB: " + person.dob + "\n";
   personInfo += "Height: " +person.height + "\n";
   personInfo += "Weight: " +person.weight + "\n";
@@ -77,11 +89,10 @@ function displayInfo(person,people){
 }
 
 function displayFamily(person,people){
-  // TODO: Display parents, spouse and children in an alert.
   let parents = displayFamilyFormat(getParents(person,people));
   let spouse = displayFamilyFormat(getSpouse(person,people));
   let children = displayFamilyFormat(getChildren(person,people));
-  let family = "Parents:" + "\n" + parents + "Spouse:" + "\n" + spouse + "Children:" + "\n" + children;
+  let family = person.firstName + " " + person.lastName + "'s Family" + "\n" + "\n" + "Parents:" + "\n" + parents + "\n" + "Spouse:" + "\n" + spouse + "\n" + "Children:" + "\n" + children;
   alert(family);
   return mainMenu(person,people);
 }
