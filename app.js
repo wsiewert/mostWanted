@@ -17,14 +17,10 @@ function app(people){
     break;
   }
 }
-
-
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-
-  var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
-
+  var displayOption = prompt("Found " + person.firstName + " " + person.lastName + ". Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
   switch(displayOption){
     case "info":
     displayInfo(person,people);
@@ -46,23 +42,23 @@ function mainMenu(person, people){
 
 function searchMenu(people){
   // TODO: Fill out a search menu to lookup a person by traits
-  var criteriaArrayIndex = ["age","height", "weight", "occupation", "eye color"];
+  var criteriaArray = ["age","height", "weight", "occupation", "eye color"];
   var displaySearchMenu = prompt("Search for the person by the following traits: age, height (in.), weight (lbs), occupation, and eye color. Type the option you want or 'restart' or 'quit'.");
   switch(displaySearchMenu){
     case "age":
-    getCriteria(people, criteriaArrayIndex);
+    getCriteria(people, criteriaArray);
     break;
     case "height":
-    getCriteria(people, criteriaArrayIndex);
+    getCriteria(people, criteriaArray);
     break;
     case "weight":
-    getCriteria(people, criteriaArrayIndex);
+    getCriteria(people, criteriaArray);
     break;
     case "occupation":
-    getCriteria(people, criteriaArrayIndex);
+    getCriteria(people, criteriaArray);
     break;
     case "eye color":
-    getCriteria(people, criteriaArrayIndex);
+    getCriteria(people, criteriaArray);
     break;
     case "restart":
     app(people); //restart
@@ -71,12 +67,15 @@ function searchMenu(people){
     return;
   }
 }
-function getCriteria(){
+function getCriteria(people, criteriaArray){
   // TODO: Prompt user for the criteria they chose
+
 }
 
-function refineSearch(){
+function refineSearch(people, criteriaArray, searchResults){
   // TODO: Asks user to choose another criteria.
+var displayRefineSearch = prompt ("Here is the list of people who fit that criteria:" +searchResults +"\n"+ "Type the name to find further information." + "\n" +  "Or, type one of the following:"+  " " +criteriaArray+ " "+ "\n"+"to refine your search or 'restart' or 'quit'.");
+//retrun function searchmenu
 }
 
 function searchByName(people){
@@ -100,16 +99,15 @@ function displayPeople(people){
 
 function displayInfo(person,people){
   var personInfo = person.firstName + " " + person.lastName + "'s information:" + "\n" + "\n"
-  personInfo += "Gender: " + person.gender + "\n";
-  personInfo += "DOB: " + person.dob + "\n";
-  personInfo += "Height: " +person.height + "\n";
-  personInfo += "Weight: " +person.weight + "\n";
-  personInfo += "Eye Color: " +person.eyeColor + "\n";
-  personInfo += "Occupation: " +person.occupation + "\n";
+  personInfo += "Gender: " +person.gender+ "\n";
+  personInfo += "DOB: " +person.dob+ "\n";
+  personInfo += "Height: " +person.height+ "\n";
+  personInfo += "Weight: " +person.weight+ "\n";
+  personInfo += "Eye Color: " +person.eyeColor+ "\n";
+  personInfo += "Occupation: " +person.occupation+ "\n";
   alert(personInfo);
   return mainMenu(person,people);
 }
-
 function displayFamily(person,people){
   let parents = displayFamilyFormat(getParents(person,people));
   let spouse = displayFamilyFormat(getSpouse(person,people));
