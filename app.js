@@ -46,23 +46,23 @@ function mainMenu(person, people){
 
 function searchMenu(people){
   // TODO: Fill out a search menu to lookup a person by traits
-  var criteriaArrayIndex = ["age","height", "weight", "occupation", "eye color"];
+  var criteriaArray = ["age","height", "weight", "occupation", "eye color"];
   var displaySearchMenu = prompt("Search for the person by the following traits: age, height (in.), weight (lbs), occupation, and eye color. Type the option you want or 'restart' or 'quit'.");
   switch(displaySearchMenu){
     case "age":
-    getCriteria(people, criteriaArrayIndex);
+    getCriteria(people,criteriaArray,0);
     break;
     case "height":
-    getCriteria(people, criteriaArrayIndex);
+    getCriteria(people,criteriaArray,1);
     break;
     case "weight":
-    getCriteria(people, criteriaArrayIndex);
+    getCriteria(people,criteriaArray,2);
     break;
     case "occupation":
-    getCriteria(people, criteriaArrayIndex);
+    getCriteria(people,criteriaArray,3);
     break;
     case "eye color":
-    getCriteria(people, criteriaArrayIndex);
+    getCriteria(people,criteriaArray,4);
     break;
     case "restart":
     app(people); //restart
@@ -90,6 +90,7 @@ function getCriteria(people,criteriaArray,index){
     }
   }
   let criteria = criteriaList.splice(index,1);
+  criteria = criteria[0];
   return refineSearch(people,criteriaList,getPeopleByCriteria(criteria,people,userInput));
 }
 
@@ -97,7 +98,11 @@ function getPeopleByCriteria(criteria,people,userInput){
   let peopleArray = [];
 
   if (criteria === "age"){
-    // TODO: Create a function to get the age then compare the values through the data set.
+    peopleArray.push.apply(peopleArray,people.filter(function(personObject){
+      if(getAgeByDob(personObject.dob) === userInput){
+        return true;
+      }
+    }));
   } else if(criteria === "height"){
     peopleArray.push.apply(peopleArray,people.filter(function(personObject){
       if(personObject.height === userInput){
@@ -117,14 +122,37 @@ function getPeopleByCriteria(criteria,people,userInput){
       }
     }));
   } else if(criteria === "eye color"){
-    // TODO: filter dataset for eye color.
-    return;
+    peopleArray.push.apply(peopleArray,people.filter(function(personObject){
+      if(personObject.eyeColor === userInput){
+        return true;
+      }
+    }));
   }
 return peopleArray;
 }
 
+function getAgeByDob(dob){
+  let dateOfBirth = Date.parse(dob);
+  let currentDate = Date.now();
+  let millisecondsPerYear = 31536000000;
+  let age = Math.floor((currentDate - dateOfBirth) / millisecondsPerYear);
+  return age;
+}
+
 function refineSearch(people,criteriaArray,searchResults){
   // TODO: Asks user to choose another criteria.
+  let userInput = prompt("Choose someone from the list below or refine your search by these commands: " + "\n" + criteriaArray + "\n" + searchResults);
+  let criteriaIndex;
+  if (searchResults.length === 0){
+    alert("No one fits this criteria.");
+    return searchMenu(people);
+  } else if (criteriaArray.includes(userInput)){
+    criteriaIndex = criteriaArray.indexOf(userInput);
+    getCriteria(people,criteriaArray,criteriaIndex);
+  } else if (false){
+    //if = persons name then go to that person.
+    //either have a refine search option or only searches for 1 criteria at a time.
+  }
 }
 
 function searchByName(people){
