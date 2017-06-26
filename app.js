@@ -127,7 +127,6 @@ return peopleArray;
 }
 
 function refineSearch(people,criteriaArray, result){
-  // TODO: Asks user to choose another criteria.
   let peopleByCriteria = DisplayPersonByCriteria(result,criteriaArray);
   let promptCriteria = ("Here is the list of people who fit that criteria:" +peopleByCriteria+ "\n" +  "Or, type one of the following:"+  " " +criteriaArray+ " "+ "\n"+"to refine your search or 'restart' or 'quit'.");
 prompt (promptCriteria);
