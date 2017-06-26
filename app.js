@@ -132,6 +132,7 @@ function refineSearch(people,criteriaArray, result){
   let peopleByCriteria = DisplayPersonByCriteria(result,criteriaArray);
   let promptCriteria = ("Here is the list of people who fit that criteria:" +peopleByCriteria+ "\n" +  "Or, type one of the following:"+  " " +criteriaArray+ " "+ "\n"+"to refine your search or 'restart' or 'quit'.");
 prompt (promptCriteria);
+return searchMenu(people, criteriaArray);
 }
 
 function DisplayPersonByCriteria (people,criteriaArray){
