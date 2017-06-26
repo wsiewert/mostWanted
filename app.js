@@ -32,16 +32,15 @@ function mainMenu(person, people){
     displayDescendants(person, people);
     break;
     case "restart":
-    app(people); // restart
+    app(people);
     break;
-    return; // stop execution
+    return;
     default:
     return;
   }
 }
 
 function searchMenu(people){
-  // TODO: Fill out a search menu to lookup a person by traits
   var criteriaArray = ["age","height", "weight", "occupation", "eye color"];
   var displaySearchMenu = prompt("Search for the person by the following traits: age, height (in.), weight (lbs), occupation, and eye color. Type the option you want or 'restart' or 'quit'.");
   switch(displaySearchMenu){
@@ -61,7 +60,7 @@ function searchMenu(people){
     getCriteria(people, criteriaArray, 4);
     break;
     case "restart":
-    app(people); //restart
+    app(people);
     break;
     default:
     return;
@@ -128,7 +127,6 @@ return peopleArray;
 }
 
 function refineSearch(people,criteriaArray, result){
-  // TODO: Asks user to choose another criteria.
   let peopleByCriteria = DisplayPersonByCriteria(result,criteriaArray);
   let promptCriteria = ("Here is the list of people who fit that criteria:" +peopleByCriteria+ "\n" +  "Or, type one of the following:"+  " " +criteriaArray+ " "+ "\n"+"to refine your search or 'restart' or 'quit'.");
 prompt (promptCriteria);
@@ -167,7 +165,6 @@ function searchByName(people){
   return app(people);
 }
 
-// alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
@@ -252,7 +249,6 @@ function getPersonById(Id,people){
   return person[0];
 }
 
-//Finds all descendants, returns and array of descendants.
 function checkDescendants(person,people){
   let descendantsArray = [];
   let personChange = person;
