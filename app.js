@@ -86,6 +86,7 @@ function getCriteria(people,criteriaArray,index){
     }
   }
   let criteria = criteriaList.splice(index,1);
+  criteria = criteria[0];
   return refineSearch(people,criteriaList,getPeopleByCriteria(criteria,people,userInput));
 }
 
@@ -93,7 +94,11 @@ function getPeopleByCriteria(criteria,people,userInput){
   let peopleArray = [];
 
   if (criteria === "age"){
-    // TODO: Create a function to get the age then compare the values through the data set.
+    peopleArray.push.apply(peopleArray,people.filter(function(personObject){
+      if(getAgeByDob(personObject.dob) === userInput){
+        return true;
+      }
+    }));
   } else if(criteria === "height"){
     peopleArray.push.apply(peopleArray,people.filter(function(personObject){
       if(personObject.height === userInput){
@@ -113,22 +118,24 @@ function getPeopleByCriteria(criteria,people,userInput){
       }
     }));
   } else if(criteria === "eye color"){
-    // TODO: filter dataset for eye color.
-    return;
+    peopleArray.push.apply(peopleArray,people.filter(function(personObject){
+      if(personObject.eyeColor === userInput){
+        return true;
+      }
+    }));
   }
 return peopleArray;
 }
 
 function refineSearch(people,criteriaArray, result){
   // TODO: Asks user to choose another criteria.
-
-  let peopleByCriteria = DisplayPersonByCriteria(getPeopleByCriteria(criteria,people,userInput));
-  let promptCriteria = ("Here is the list of people who fit that criteria:" +peopleByCriteria+ "\n"+ "Type the name to find further information." + "\n" +  "Or, type one of the following:"+  " " +criteriaArray+ " "+ "\n"+"to refine your search or 'restart' or 'quit'.");
+  let peopleByCriteria = DisplayPersonByCriteria(result,criteriaArray);
+  let promptCriteria = ("Here is the list of people who fit that criteria:" +peopleByCriteria+ "\n" +  "Or, type one of the following:"+  " " +criteriaArray+ " "+ "\n"+"to refine your search or 'restart' or 'quit'.");
 prompt (promptCriteria);
 }
 
 function DisplayPersonByCriteria (people,criteriaArray){
-  let arrayToString = criteriaArray.map(function(personObject){
+  let arrayToString = people.map(function(personObject){
     return " "+personObject.firstName+ " " +personObject.lastName+"\n";
   }).join("");
   if(arrayToString.length === 0){
@@ -136,6 +143,14 @@ function DisplayPersonByCriteria (people,criteriaArray){
   } else {
     return arrayToString;
   }
+}
+
+function getAgeByDob(dob){
+  let dateOfBirth = Date.parse(dob);
+  let currentDate = Date.now();
+  let millisecondsPerYear = 31536000000;
+  let age = Math.floor((currentDate - dateOfBirth) / millisecondsPerYear);
+  return age;
 }
 
 function searchByName(people){
