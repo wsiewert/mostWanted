@@ -17,14 +17,10 @@ function app(people){
     break;
   }
 }
-
-
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-
-  var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
-
+  var displayOption = prompt("Found " + person.firstName + " " + person.lastName + ". Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
   switch(displayOption){
     case "info":
     displayInfo(person,people);
@@ -49,19 +45,19 @@ function searchMenu(people){
   var displaySearchMenu = prompt("Search for the person by the following traits: age, height (in.), weight (lbs), occupation, and eye color. Type the option you want or 'restart' or 'quit'.");
   switch(displaySearchMenu){
     case "age":
-    getCriteria(people,criteriaArray,0);
+    getCriteria(people, criteriaArray, 0);
     break;
     case "height":
-    getCriteria(people,criteriaArray,1);
+    getCriteria(people, criteriaArray, 1);
     break;
     case "weight":
-    getCriteria(people,criteriaArray,2);
+    getCriteria(people, criteriaArray, 2);
     break;
     case "occupation":
-    getCriteria(people,criteriaArray,3);
+    getCriteria(people, criteriaArray, 3);
     break;
     case "eye color":
-    getCriteria(people,criteriaArray,4);
+    getCriteria(people, criteriaArray, 4);
     break;
     case "restart":
     app(people);
@@ -130,28 +126,30 @@ function getPeopleByCriteria(criteria,people,userInput){
 return peopleArray;
 }
 
+function refineSearch(people,criteriaArray, result){
+  // TODO: Asks user to choose another criteria.
+  let peopleByCriteria = DisplayPersonByCriteria(result,criteriaArray);
+  let promptCriteria = ("Here is the list of people who fit that criteria:" +peopleByCriteria+ "\n" +  "Or, type one of the following:"+  " " +criteriaArray+ " "+ "\n"+"to refine your search or 'restart' or 'quit'.");
+prompt (promptCriteria);
+}
+
+function DisplayPersonByCriteria (people,criteriaArray){
+  let arrayToString = people.map(function(personObject){
+    return " "+personObject.firstName+ " " +personObject.lastName+"\n";
+  }).join("");
+  if(arrayToString.length === 0){
+    return "No one fits this criteria" + "\n"
+  } else {
+    return arrayToString;
+  }
+}
+
 function getAgeByDob(dob){
   let dateOfBirth = Date.parse(dob);
   let currentDate = Date.now();
   let millisecondsPerYear = 31536000000;
   let age = Math.floor((currentDate - dateOfBirth) / millisecondsPerYear);
   return age;
-}
-
-function refineSearch(people,criteriaArray,searchResults){
-  // TODO: Asks user to choose another criteria.
-  let userInput = prompt("Choose someone from the list below or refine your search by these commands: " + "\n" + criteriaArray + "\n" + searchResults);
-  let criteriaIndex;
-  if (searchResults.length === 0){
-    alert("No one fits this criteria.");
-    return searchMenu(people);
-  } else if (criteriaArray.includes(userInput)){
-    criteriaIndex = criteriaArray.indexOf(userInput);
-    getCriteria(people,criteriaArray,criteriaIndex);
-  } else if (false){
-    //if = persons name then go to that person.
-    //either have a refine search option or only searches for 1 criteria at a time.
-  }
 }
 
 function searchByName(people){
@@ -163,7 +161,7 @@ function searchByName(people){
       return mainMenu(person, people);
     }
   }
-  alert ("no person found");
+  alert ("\n"+"no person found");
   return app(people);
 }
 
@@ -175,16 +173,15 @@ function displayPeople(people){
 
 function displayInfo(person,people){
   var personInfo = person.firstName + " " + person.lastName + "'s information:" + "\n" + "\n"
-  personInfo += "Gender: " + person.gender + "\n";
-  personInfo += "DOB: " + person.dob + "\n";
-  personInfo += "Height: " +person.height + "\n";
-  personInfo += "Weight: " +person.weight + "\n";
-  personInfo += "Eye Color: " +person.eyeColor + "\n";
-  personInfo += "Occupation: " +person.occupation + "\n";
+  personInfo += "Gender: " +person.gender+ "\n";
+  personInfo += "DOB: " +person.dob+ "\n";
+  personInfo += "Height: " +person.height+ "\n";
+  personInfo += "Weight: " +person.weight+ "\n";
+  personInfo += "Eye Color: " +person.eyeColor+ "\n";
+  personInfo += "Occupation: " +person.occupation+ "\n";
   alert(personInfo);
   return mainMenu(person,people);
 }
-
 function displayFamily(person,people){
   let parents = displayFamilyFormat(getParents(person,people));
   let spouse = displayFamilyFormat(getSpouse(person,people));
